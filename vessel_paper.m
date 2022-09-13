@@ -1,0 +1,10 @@
+input_img = imread('20051213_62383_0100_PP.tif');
+g = input_img(:,:,2); 
+r = input_img(:,:,1);
+histmatch_img = imhistmatch (g,r);
+figure,imshow(histmatch_img),title('histmatch_img');
+Low_High = stretchlim(histmatch_img);
+adjust_img = imadjust(histmatch_img,stretchlim(histmatch_img),[]);
+figure,imshow(adjust_img),title('adjust_img');
+pre_img = medfilt2(adjust_img);
+figure,imshow(pre_img),title('pre_img'); 
